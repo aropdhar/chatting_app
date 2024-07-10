@@ -5,9 +5,32 @@ import { CiHome, CiSettings } from 'react-icons/ci'
 import Paragraph from '../../component/paragraph/Paragraph'
 import { FaRocketchat } from 'react-icons/fa'
 import { IoIosLogOut } from 'react-icons/io'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAuth, signOut } from "firebase/auth";
+import { loginstorage } from '../../reduxslice/authslice'
 
 const Sidebar = () => {
+  
+  const navigate = useNavigate();
+  const data = useSelector((state) => state.userstorage.value)
+  const auth = getAuth();
+  const dispatch = useDispatch()
+  
+  let handlelogout = () =>{
+
+    signOut(auth).then(() => {
+
+      navigate("/")
+      localStorage.removeItem('localstorage')
+      dispatch(loginstorage(null))
+
+    }).catch((error) => {
+      console.log("vul log out");
+    });
+
+  }
+ 
   return (
     <>
     <div className='p-[15px] pl-[15px]'>
@@ -17,7 +40,7 @@ const Sidebar = () => {
             <div className='bg-[#fff] w-[50px] h-[50px] rounded-[50%] overflow-hidden'>
                 <Image alt="not found" className="w-[100%] h-[100%] object-cover"/> 
             </div>
-            <Heading text="Arop Dhar" textclass="text-[#fff] text-[15px]"/>
+            <Heading text={data.displayName} textclass="text-[#fff] text-[15px]"/>
           </div>
         <div className='flex flex-col gap-[40px]'>
            <div>
@@ -37,7 +60,7 @@ const Sidebar = () => {
            </div>
         </div>
         </div>
-        <div>
+        <div onClick={handlelogout}>
           <p className='flex items-center gap-[5px] cursor-pointer text-[25px] text-[#fff]'> <IoIosLogOut className='text-[36px]'/> Log Out</p>
         </div>
       </div>

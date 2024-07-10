@@ -8,7 +8,11 @@ export default {
     extend: {
       boxShadow: {
         'boxshadow': '0 0 20px rgba(0, 0, 0, 0.4)',
-      }
+      },
+      colors: {
+        'custom-blue': 'rgba(0, 0, 0, 0.748)',
+      },
+
     },
   },
   plugins: [],

@@ -8,12 +8,23 @@
       @apply w-[400px] pt-[10px] pr-0 pb-[10px] pl-[10px] pt-[10px] rounded-[15px] border-2 border-[#000];
     }
     
-  .regbtn{
+    .regbtn{
 
-    @apply w-[400px] bg-[#000] flex justify-center items-center m-auto rounded-[20px] text-[#fff] text-[18px] ml-[15px] py-[12px];
+      @apply w-[400px] bg-[#000] flex justify-center items-center m-auto rounded-[20px] text-[#fff] text-[18px] ml-[15px] py-[12px];
 
-  }
+    }
+    
+    .rgbacolor{
+      @apply flex items-center justify-center bg-custom-blue absolute left-0 top-0 w-[100%] h-[100vh];
+    }
 
-   
+    .login_input_design{
+      @apply w-[350px] p-[12px] rounded-[12px] border-2 border-[#000];
+    }
+
+    .login_btn{
+      @apply bg-[#000] text-[#fff] text-[20px] rounded-[12px] font-bold p-[18px];
+    }
+
   }
   
