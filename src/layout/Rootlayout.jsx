@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
 const Rootlayout = () => {
   return (
     <>
-    <div className='flex gap-[10px]'>
+    <div className='flex bg-[#646363] gap-[10px]'>
        <Sidebar/>
           <Outlet/>
        <Navbar/>

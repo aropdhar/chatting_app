@@ -16,7 +16,8 @@ const Sidebar = () => {
   const data = useSelector((state) => state.userstorage.value)
   const auth = getAuth();
   const dispatch = useDispatch()
-  
+  console.log(data);
+
   let handlelogout = () =>{
 
     signOut(auth).then(() => {
@@ -34,18 +35,18 @@ const Sidebar = () => {
   return (
     <>
     <div className='p-[15px] pl-[15px]'>
-      <div className='p-[20px] flex flex-col justify-between w-[200px] h-[96vh] bg-[blue] rounded-[12px]'>
+      <div className='p-[20px] flex flex-col justify-between w-[200px] h-[96vh] bg-[#000] rounded-[12px]'>
         <div className='flex flex-col gap-[80px]'>
           <div className='flex items-center gap-[10px]'>
             <div className='bg-[#fff] w-[50px] h-[50px] rounded-[50%] overflow-hidden'>
-                <Image alt="not found" className="w-[100%] h-[100%] object-cover"/> 
+                <Image src={data.photoURL} alt="not found" className="w-[100%] h-[100%] object-cover"/> 
             </div>
-            <Heading text={data.displayName} textclass="text-[#fff] text-[15px]"/>
+            <Heading text={data.displayName} textclass="text-[#fff] text-[14px]"/>
           </div>
         <div className='flex flex-col gap-[40px]'>
-           <div>
-              <NavLink to="/home">
-                <p className='flex cursor-pointer items-center gap-[10px] text-[#fff]'><CiHome className='text-[36px] text-[#fff]'/> Home</p>
+           <div className='relative'>
+              <NavLink to="/home" className=''>
+                <p className='flex after:absolute after:content-[" "] after:left-[-20px] after:top-0 after:bg-[#fff] after:w-[10px]  after:h-[40px] after:rounded-[20px] transition duration-300 cursor-pointer items-center gap-[10px] text-[#fff]'><CiHome className='text-[36px] text-[#fff] '/> Home</p>
               </NavLink>
            </div>
            <div>

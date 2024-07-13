@@ -133,7 +133,7 @@ const Registration = () => {
                /> 
 
                {formik.touched.signname && formik.errors.signname ? (
-                        <div>{formik.errors.signname}</div>
+                        <div className='text-[red]'>{formik.errors.signname}</div>
                ) : null}
             </div>
             <div>
@@ -147,7 +147,7 @@ const Registration = () => {
                /> 
 
                {formik.touched.signpassword && formik.errors.signpassword ? (
-                  <div>{formik.errors.signpassword}</div>
+                  <div className='text-[red]'>{formik.errors.signpassword}</div>
                ) : null}
             </div>
             <div>

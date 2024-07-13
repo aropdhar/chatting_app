@@ -7,14 +7,14 @@ import Input from '../../component/input/Input'
 import { NavLink } from 'react-router-dom'
 import { useFormik } from 'formik';
 import loginvaliodation from '../../validation/Loginvalidation'
-import { getAuth, signInWithEmailAndPassword , sendPasswordResetEmail  } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword , sendPasswordResetEmail , GoogleAuthProvider  , signInWithPopup } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from 'react-loader-spinner'
 import { useSelector, useDispatch } from 'react-redux'
 import { loginstorage } from '../../reduxslice/authslice'
 import { IoClose } from 'react-icons/io5'
-
 
 const Login = () => {
    
@@ -25,9 +25,47 @@ const Login = () => {
    const data = useSelector((state) => state.userstorage.value)
    const [resetvalue , setResetvalue] = useState("")
    const [forgotshow , setForgotshow] = useState(false)
+   const provider = new GoogleAuthProvider();
+   const db = getDatabase();
 
    let handlegoogle = () =>{
-      console.log("ok");
+
+      signInWithPopup(auth, provider)
+         .then((result) => {
+
+            const user = result.user;
+            console.log(user);
+            if(user.emailVerified){
+               navigate("/home");
+               localStorage.setItem('localstorage', JSON.stringify(user));
+               dispatch(loginstorage(user))
+               console.log("ok");
+               setlogLoader(false);
+               
+               set(ref(db, 'users/' + user.uid), {
+                  displayName: user.displayName,
+                  email: user.email,
+                  photourl: user.photoURL,
+                });
+
+            }
+            
+            else{
+               toast("Please Verified Your Email");
+               setlogLoader(false);
+            }
+            
+         }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+         });
+         
    }
    
    let handleshow = () =>{
@@ -38,8 +76,8 @@ const Login = () => {
     
       sendPasswordResetEmail(auth, resetvalue)
          .then(() => {
-            // Password reset email sent!
-            // ..
+            toast('Please Check Your Email Address');
+            setResetvalue(" ");
          })
          .catch((error) => {
             const errorCode = error.code;
@@ -59,7 +97,6 @@ const Login = () => {
 
       onSubmit: (values  , actions) => {
          actions.resetForm()
-         console.log(values);
          setlogLoader(true);
 
     signInWithEmailAndPassword(auth, values.signinemail , values.signinpassword)
@@ -164,7 +201,7 @@ const Login = () => {
                </div>
             </form>
             <div>
-               <a href="#" onClick={handleshow} className='inline-block ml-[220px] underline'>Forgot Password?</a>
+               <a href="#" onClick={handleshow} className='inline-block ml-[220px] underline'>Forget Password?</a>
             </div>
              <p className='w-[220px] text-[16px]'>No Account?<NavLink to="/registration" className="ml-[10px] text-[blue] underline">Create Account</NavLink></p>
          </div>

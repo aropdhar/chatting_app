@@ -14,10 +14,10 @@ const Navbar = () => {
          <div className='flex items-center justify-between'>
              <Heading text="Chats" textclass="text-[#fff] text-[32px]"/>
              <div className='flex items-center gap-[30px]'>
-                <IoIosNotificationsOutline className='text-[#fff] text-[40px]'/>
+                <IoIosNotificationsOutline className='text-[#fff] text-[40px] cursor-pointer'/>
                 <div className='flex items-center gap-[10px]'>
                     <div className='bg-[#fff] w-[45px] h-[45px] overflow-hidden	rounded-[50%]'>
-                      <Image alt="Not Found" className="w-[100%] h-[100%]object-cover"/>
+                      <Image src={data.photoURL} alt="Not Found" className="w-[100%] h-[100%]object-cover"/>
                     </div>
                     <p className='text-[#fff]'>{data.displayName}</p>
                 </div>
