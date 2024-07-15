@@ -6,8 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const Navbar = () => {
 
-  const data = useSelector((state) => state.userstorage.value)
-  console.log(data);
+  const data = useSelector((state) => state.userstorage.value);
 
   return (
     <>

@@ -39,7 +39,6 @@ const Login = () => {
                navigate("/home");
                localStorage.setItem('localstorage', JSON.stringify(user));
                dispatch(loginstorage(user))
-               console.log("ok");
                setlogLoader(false);
                
                set(ref(db, 'users/' + user.uid), {
