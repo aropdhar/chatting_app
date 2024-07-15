@@ -1,9 +1,10 @@
 import React from 'react'
+import Userlist from './userlist/Userlist'
 
 const Home = () => {
   return (
-    <div className='mt-[100px]'>
-      <h1>Home</h1>
+    <div className='mt-[100px] z-[-20px]'>
+      <Userlist/>
     </div>
   )
 }
