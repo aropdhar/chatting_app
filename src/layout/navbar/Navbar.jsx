@@ -3,6 +3,8 @@ import Heading from '../../component/Heading'
 import { IoIosNotificationsOutline } from 'react-icons/io'
 import Image from '../../component/image/Image'
 import { useSelector, useDispatch } from 'react-redux'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Navbar = () => {
 

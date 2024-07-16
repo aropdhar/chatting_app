@@ -33,7 +33,7 @@ const Userlist = () => {
 
     let handleadd = (info) =>{
     
-        set(push(ref(db, 'userlist')), {
+        set(push(ref(db, 'friendreq')), {
            whosendid: data.uid,
            whosendname: data.displayName,
            whosendemail: data.email,
@@ -48,7 +48,8 @@ const Userlist = () => {
       <div className='w-[420px] h-[84vh] p-[20px] rounded-[10px] bg-[#000]  ml-[10px]'>
          <Heading text="People you may know" textclass="text-[#fff] text-[20px] font-bold"/> 
          <div className='bg-[#42413f] overflow-scroll flex flex-col gap-y-[20px] p-[10px] rounded-[10px] mt-[20px] h-[70vh]'>
-        {alluser.map((item , index)=>(
+        {alluser.length > 0 ?
+        alluser.map((item , index)=>(
             
             <div key={index}  className='flex items-center justify-between'>
                 <div className='flex items-center gap-x-[12px]'>
@@ -69,6 +70,10 @@ const Userlist = () => {
             </div>
 
         ))
+
+        :
+
+        <p className='text-[#000] p-[20px] rounded-[15px] mt-[165px] text-center text-[22px] bg-[skyblue]'>No Found users</p>
 
         }
             

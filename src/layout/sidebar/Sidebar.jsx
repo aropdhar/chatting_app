@@ -9,11 +9,14 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAuth, signOut } from "firebase/auth";
 import { loginstorage } from '../../reduxslice/authslice'
+import { AiFillWechat } from 'react-icons/ai'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Sidebar = () => {
   
   const navigate = useNavigate();
-  const data = useSelector((state) => state.userstorage.value)
+  const data = useSelector((state) => state?.userstorage?.value)
   const auth = getAuth();
   const dispatch = useDispatch()
 
@@ -40,7 +43,14 @@ const Sidebar = () => {
             <div className='bg-[#fff] w-[50px] h-[50px] rounded-[50%] overflow-hidden'>
                 <Image src={data.photoURL} alt="not found" className="w-[100%] h-[100%] object-cover"/> 
             </div>
-            <Heading text={data.displayName} textclass="text-[#fff] text-[14px]"/>
+            <Heading text={
+              data ?
+
+              data.displayName
+              :
+
+              <Skeleton className='w-[60%] h-[40%]'/>
+            } textclass="text-[#fff] text-[14px]"/>
           </div>
         <div className='flex flex-col gap-[40px]'>
            <div className='relative'>
@@ -50,7 +60,7 @@ const Sidebar = () => {
            </div>
            <div>
             <NavLink to="message">
-                <p className='flex cursor-pointer items-center gap-[10px] text-[#fff]'><FaRocketchat className='text-[36px] text-[#fff]'/> Chats</p>
+                <p className='flex cursor-pointer items-center gap-[10px] text-[#fff]'><AiFillWechat className='text-[36px] text-[#fff]'/> Chats</p>
             </NavLink>
            </div>
            <div>
