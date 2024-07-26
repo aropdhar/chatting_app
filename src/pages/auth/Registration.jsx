@@ -32,14 +32,13 @@ const Registration = () => {
       validationSchema: registervalidation,
 
       onSubmit: (values , actions) => {
-         
+  
          setLoader(true)
-
+         
          const auth = getAuth();
          createUserWithEmailAndPassword(auth, values.signemail, values.signpassword)
            .then((userCredential) => {
              const user = userCredential.user;
-             console.log(user);
              sendEmailVerification(auth.currentUser)
                .then(() => {
                   updateProfile(auth.currentUser, {
@@ -59,7 +58,7 @@ const Registration = () => {
                          actions.resetForm()
                       })
                    }).catch((error) => {
-                     toast("please Name is Wrong")
+                     toast("Please send is character")
                    });
                    
                }); 

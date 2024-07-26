@@ -1,9 +1,10 @@
 import React from 'react'
+import Friends from './friends/Friends'
 
 const Message = () => {
   return (
     <div className='mt-[100px]'>
-      <h1>Chats</h1>
+      <Friends/>
     </div>
   )
 }

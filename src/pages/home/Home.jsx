@@ -4,7 +4,7 @@ import Friendreq from './friendrequestlist/Friendreq'
 
 const Home = () => {
   return (
-    <div className='mt-[100px] flex gap-x-[40px]'>
+    <div className='mt-[100px] flex gap-x-[20px]'>
       <Userlist/>
       <Friendreq/>
     </div>

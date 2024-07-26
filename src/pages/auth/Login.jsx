@@ -67,9 +67,6 @@ const Login = () => {
          
    }
    
-   let handleshow = () =>{
-      setForgotshow(true)
-   }
 
    let handlereset = () =>{
     
@@ -105,8 +102,7 @@ const Login = () => {
             if(user.emailVerified){
                navigate("/home");
                localStorage.setItem('localstorage', JSON.stringify(user));
-               dispatch(loginstorage(user))
-               console.log("ok");
+               dispatch(loginstorage(user));
                setlogLoader(false);
             }
             
@@ -200,7 +196,7 @@ const Login = () => {
                </div>
             </form>
             <div>
-               <a href="#" onClick={handleshow} className='inline-block ml-[220px] underline'>Forget Password?</a>
+               <a href="#" onClick={()=>setForgotshow(true)} className='inline-block ml-[220px] underline'>Forget Password?</a>
             </div>
              <p className='w-[220px] text-[16px]'>No Account?<NavLink to="/registration" className="ml-[10px] text-[blue] underline">Create Account</NavLink></p>
          </div>

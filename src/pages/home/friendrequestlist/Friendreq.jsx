@@ -42,7 +42,9 @@ const Friendreq = () => {
             receiveid: data.uid,
             receivename: data.displayName,
             receiveemail: data.email,
-          });
+          }).then(()=>{
+            remove(ref(db, 'friendreq/' + confirminfo.id))
+          })
 
     }
 

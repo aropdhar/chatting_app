@@ -49,7 +49,7 @@ const Sidebar = () => {
               data.displayName
               :
 
-              <Skeleton className='w-[60%] h-[40%]'/>
+              <Skeleton />
             } textclass="text-[#fff] text-[14px]"/>
           </div>
         <div className='flex flex-col gap-[40px]'>
@@ -75,6 +75,8 @@ const Sidebar = () => {
         </div>
       </div>
     </div>
+
+    
     </>
   )
 }

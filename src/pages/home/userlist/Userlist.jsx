@@ -11,9 +11,12 @@ import { useSelector, useDispatch } from 'react-redux'
 const Userlist = () => {
 
     const db = getDatabase();
-    const [alluser , setAlluser] = useState([])
     const data = useSelector((state) => state.userstorage.value)
     console.log(data);
+    const [alluser , setAlluser] = useState([]);
+    const [freq , setFreq] = useState([])
+
+// all user list
 
     useEffect(()=>{
         const userCountRef = ref(db, 'users');
@@ -30,6 +33,27 @@ const Userlist = () => {
                 setAlluser(arr);
         });
     }, [])
+
+// friendrequest list 
+
+useEffect(()=>{
+    const freqCountRef = ref(db, 'friendreq');
+        onValue(freqCountRef, (snapshot) => {
+        
+            let arr = [];
+          
+            snapshot.forEach((item)=>{
+                if(data.uid == item.val().whosendid || data.uid == item.val().whoreceiveid){
+                   arr.push(item.val().whosendid + item.val().whoreceiveid)
+                }
+            })
+          
+            setFreq(arr);
+    });
+}, [])
+
+
+
 
     let handleadd = (info) =>{
     
@@ -62,10 +86,18 @@ const Userlist = () => {
                         <Paragraph paratext="Mern 2306" className="text-[#fff] font-medium"/>
                     </div>
                 </div>
+            {freq.includes(data.uid + item.id) || freq.includes(item.id + data.uid) 
+            ?
+             <div>
+                <button className='bg-[blue] rounded-[10px] text-[#fff] px-[20px] font-semibold border-none py-[10px]'>Cancel</button>
+             </div>
             
+              :
+
                 <div>
                     <button className='bg-[blue] rounded-[10px] text-[#fff] px-[20px] font-semibold border-none py-[10px]' onClick={()=>handleadd(item)}>Add Friend </button>
                 </div>
+            }
 
             </div>
 
