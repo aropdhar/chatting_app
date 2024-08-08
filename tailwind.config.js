@@ -12,7 +12,8 @@ export default {
       colors: {
         'custom-blue': 'rgba(0, 0, 0, 0.748)',
         'bg-color': 'rgba(0, 0, 0, 0.850)',
-        'notibg' : 'rgba(238, 238, 238, 0.3);'
+        'notibg' : 'rgba(238, 238, 238, 0.3);',
+        'frndbg' : 'rgba(0, 0, 0, 0.2);'
       },
 
     },

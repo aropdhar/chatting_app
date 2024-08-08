@@ -4,7 +4,7 @@ import Image from '../../../component/image/Image'
 import Paragraph from '../../../component/paragraph/Paragraph'
 import { getDatabase, ref, set ,onValue, push } from "firebase/database";
 import { useSelector, useDispatch } from 'react-redux'
-
+import { increment } from '../../../reduxslice/counterSlice';
 
 
 
@@ -12,9 +12,12 @@ const Userlist = () => {
 
     const db = getDatabase();
     const data = useSelector((state) => state.userstorage.value)
-    console.log(data);
     const [alluser , setAlluser] = useState([]);
     const [freq , setFreq] = useState([])
+    const [frnd , setFrnd] = useState([])
+    const dispatch = useDispatch()
+    
+
 
 // all user list
 
@@ -36,35 +39,55 @@ const Userlist = () => {
 
 // friendrequest list 
 
-useEffect(()=>{
-    const freqCountRef = ref(db, 'friendreq');
-        onValue(freqCountRef, (snapshot) => {
-        
-            let arr = [];
-          
-            snapshot.forEach((item)=>{
-                if(data.uid == item.val().whosendid || data.uid == item.val().whoreceiveid){
-                   arr.push(item.val().whosendid + item.val().whoreceiveid)
-                }
-            })
-          
-            setFreq(arr);
-    });
-}, [])
+    useEffect(()=>{
+        const freqCountRef = ref(db, 'friendreq');
+            onValue(freqCountRef, (snapshot) => {
+            
+                let arr = [];
+            
+                snapshot.forEach((item)=>{
+                    if(data.uid == item.val().whosendid || data.uid == item.val().whoreceiveid){
+                    arr.push(item.val().whosendid + item.val().whoreceiveid)
+                    }
+                })
+            
+                setFreq(arr);
+        });
+    }, [])
 
 
+// friend list 
+
+    useEffect(()=>{
+        const frndCountRef = ref(db, 'friends');
+            onValue(frndCountRef, (snapshot) => {
+            
+                let arr = [];
+            
+                snapshot.forEach((item)=>{
+                    if(item.val().senderid == data.uid || item.val().receiveid == data.uid){
+                    arr.push(item.val().senderid + item.val().receiveid)
+                    }
+                })
+            
+                setFrnd(arr);
+        });
+    }, [])
 
 
     let handleadd = (info) =>{
     
-        set(push(ref(db, 'friendreq')), {
-           whosendid: data.uid,
-           whosendname: data.displayName,
-           whosendemail: data.email,
-           whoreceiveid: info.id,
-           whoreceivename: info.DisplayName,
-           whoreceiveemail: info.email,
-        });
+        // set(push(ref(db, 'friendreq')), {
+        //    whosendid: data.uid,
+        //    whosendname: data.displayName,
+        //    whosendemail: data.email,
+        //    whoreceiveid: info.id,
+        //    whoreceivename: info.DisplayName,
+        //    whoreceiveemail: info.email,
+        // });
+
+        dispatch(increment());
+      
     }
 
   return (
@@ -93,6 +116,13 @@ useEffect(()=>{
              </div>
             
               :
+
+              frnd.includes(data.uid + item.id) || frnd.includes(item.id + data.uid) ?
+
+                 <button className='bg-[blue] rounded-[10px] text-[#fff] px-[20px] font-semibold border-none py-[10px]'>Friends</button>
+               
+
+                :
 
                 <div>
                     <button className='bg-[blue] rounded-[10px] text-[#fff] px-[20px] font-semibold border-none py-[10px]' onClick={()=>handleadd(item)}>Add Friend </button>

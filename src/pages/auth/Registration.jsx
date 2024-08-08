@@ -59,6 +59,7 @@ const Registration = () => {
                       })
                    }).catch((error) => {
                      toast("Please send is character")
+                     setLoader(false)
                    });
                    
                }); 

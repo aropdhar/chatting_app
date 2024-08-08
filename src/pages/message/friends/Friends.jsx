@@ -33,10 +33,10 @@ const Friends = () => {
          <Heading text="Friends" textclass="text-[#fff] text-[20px] font-bold"/> 
          <div className='bg-[#42413f] overflow-scroll flex flex-col gap-y-[20px] p-[10px] rounded-[10px] mt-[20px] h-[70vh]'>
         {frnd.length > 0 ?
-        
+
         frnd.map((item , index)=>(
             
-            <div key={index}  className='flex items-center justify-between p-[10px] rounded-[10px] cursor-pointer hover:bg-[#000]'>
+            <div key={index}  className='flex items-center justify-between p-[10px] rounded-[10px] cursor-pointer hover:bg-frndbg'>
                 <div className='flex items-center gap-x-[12px]'>
                     <div className='bg-[#fff] w-[60px] h-[60px] overflow-hidden	rounded-[50%]'>
                         <Image alt="Not Found" className="w-[100%] h-[100%] object-cover"/>
@@ -68,7 +68,7 @@ const Friends = () => {
 
         :
 
-        <p className='text-[#000] p-[20px] rounded-[15px] mt-[165px] text-center text-[22px] bg-[skyblue]'>No Found users</p>
+        <p className='text-[#000] p-[20px] rounded-[15px] mt-[165px] text-center text-[22px] bg-[skyblue]'>No Found Friends</p>
 
         }
             

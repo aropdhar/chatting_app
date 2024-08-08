@@ -6,11 +6,21 @@ import { useSelector, useDispatch } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Paragraph from '../../component/paragraph/Paragraph'
+import { decrement } from '../../reduxslice/counterSlice'
 
 const Navbar = () => {
 
   const data = useSelector((state) => state.userstorage.value);
   const [notishow , setNotishow] = useState(false);
+  const counter = useSelector((state) => state.counterstore.value)
+  const dispatch = useDispatch()
+
+  let notification = () =>{
+    
+    dispatch(decrement(counter - counter))
+    setNotishow(true)
+
+  }
 
   return (
     <>
@@ -18,7 +28,13 @@ const Navbar = () => {
          <div className='flex items-center relative justify-between'>
              <Heading text="Chats" textclass="text-[#fff] text-[32px]"/>
              <div className='flex items-center gap-[30px]'>
-                <IoIosNotificationsOutline onClick={()=>setNotishow(true)} className='text-[#fff] hover:bg-notibg hover:rounded-[50%] text-[40px] cursor-pointer'/>
+               <div className='relative'>
+                 <IoIosNotificationsOutline onClick={notification} className='text-[#fff] hover:bg-notibg hover:rounded-[50%] text-[40px] cursor-pointer'/>
+              {counter > 0 &&
+
+                  <p className='text-[#fff] absolute top-0 left-[18px] bg-[red] p-[10px] w-[25px] h-[25px] rounded-[50%] flex justify-center items-center text-[18px]'>{counter}</p>
+              }
+               </div>
                 <div className='flex items-center gap-[10px]'>
                     <div className='bg-[#fff] w-[45px] h-[45px] overflow-hidden	rounded-[50%]'>
                       <Image src={data.photoURL} alt="Not Found" className="w-[100%] h-[100%] object-cover"/>
