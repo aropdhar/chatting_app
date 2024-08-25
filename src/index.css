@@ -25,9 +25,19 @@
     .login_btn{
       @apply bg-[#000] text-[#fff] text-[20px] rounded-[12px] font-bold p-[18px];
     }
+    
+    .notification_bg{
 
+      @apply bg-[#42413f] overflow-scroll flex flex-col gap-y-[20px] p-[10px] rounded-[10px] mt-[20px] h-[70vh];
+
+    }
+
+    .notification_close{
+      @apply absolute right-[20px] top-[20px] text-[#fff] text-[35px] cursor-pointer font-bold ;
+    }
+    
+    .notification_main{
+      @apply w-[420px] h-[84vh] p-[20px] absolute right-[32px] top-[100px] rounded-[10px] bg-[#000]  ml-[10px] ;
+    }
   }
 
-.bg{
-  color: rgba(0, 0, 0, 0.789);
-}

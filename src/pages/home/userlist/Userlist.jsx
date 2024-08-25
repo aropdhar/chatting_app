@@ -13,6 +13,7 @@ const Userlist = () => {
     const db = getDatabase();
     const data = useSelector((state) => state.userstorage.value)
     const [alluser , setAlluser] = useState([]);
+    const counter = useSelector((state) => state.counterstore.value)
     const [freq , setFreq] = useState([])
     const [frnd , setFrnd] = useState([])
     const dispatch = useDispatch()
@@ -77,14 +78,26 @@ const Userlist = () => {
 
     let handleadd = (info) =>{
     
-        // set(push(ref(db, 'friendreq')), {
-        //    whosendid: data.uid,
-        //    whosendname: data.displayName,
-        //    whosendemail: data.email,
-        //    whoreceiveid: info.id,
-        //    whoreceivename: info.DisplayName,
-        //    whoreceiveemail: info.email,
-        // });
+        set(push(ref(db, 'friendreq')), {
+           whosendid: data.uid,
+           whosendname: data.displayName,
+           whosendemail: data.email,
+           whoreceiveid: info.id,
+           whoreceivename: info.DisplayName,
+           whoreceiveemail: info.email,
+        }).then(()=>{
+            set(push(ref(db, 'notification')), {
+                notisendid: data.uid,
+                notisendname: data.displayName,
+                notisendemail: data.email,
+                notireceiveid: info.id,
+                notireceivename: info.DisplayName,
+                notireceiveemail: info.email,
+                info: `sent you a friend request.`,
+                date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getMilliseconds()}`,
+                counter: counter
+             })
+        })
 
         dispatch(increment());
       

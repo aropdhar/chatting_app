@@ -47,6 +47,7 @@ const Sidebar = () => {
               data ?
 
               data.displayName
+              
               :
 
               <Skeleton />
