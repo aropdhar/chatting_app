@@ -39,5 +39,26 @@
     .notification_main{
       @apply w-[420px] h-[84vh] p-[20px] absolute right-[32px] top-[100px] rounded-[10px] bg-[#000]  ml-[10px] ;
     }
+    
+    .sender_main{
+      @apply flex flex-col items-end justify-end gap-y-[5px] py-[20px] px-[12px];
+    }
+
+    .sender_msg{
+      @apply bg-[#23252f] text-[24px] max-w-[80%] overflow-hidden p-[8px] rounded-[10px] text-[white] inline-block
+    }
+
+    .receive_main{
+      @apply flex flex-col  items-start gap-x-[5px] justify-start py-[20px] px-[12px]
+    }
+
+    .receive_msg{
+      @apply bg-[#23252f] p-[8px] rounded-[10px] text-[white] inline-block
+    }
+
   }
 
+
+  .bg{
+    color: rgba(1, 1, 46, 0.773);
+  }

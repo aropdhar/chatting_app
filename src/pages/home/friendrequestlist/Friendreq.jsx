@@ -50,9 +50,9 @@ const Friendreq = () => {
 
   return (
     <>
-   <div className='w-[520px] h-[84vh] p-[20px] rounded-[10px] bg-[#000]  ml-[10px]'>
+   <div className='w-[520px] h-[84vh] p-[20px] rounded-[10px] bg-[#23252f]  ml-[10px]'>
          <Heading text="Friend Request" textclass="text-[#fff] text-[20px] font-bold"/> 
-         <div className='bg-[#42413f] overflow-scroll flex flex-col gap-y-[20px] p-[10px] rounded-[10px] mt-[20px] h-[70vh]'>
+         <div className='bg-[#3b3e46] overflow-scroll flex flex-col gap-y-[20px] p-[10px] rounded-[10px] mt-[20px] h-[70vh]'>
         {frndreq.length > 0 ?
         
         frndreq.map((item , index)=>(

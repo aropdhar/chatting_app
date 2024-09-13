@@ -37,7 +37,7 @@ const Sidebar = () => {
   return (
     <>
     <div className='p-[15px] pl-[15px]'>
-      <div className='p-[20px] flex flex-col justify-between w-[200px] h-[96vh] bg-[#000] rounded-[12px]'>
+      <div className='p-[20px] flex flex-col justify-between w-[200px] h-[96vh] bg-[#23252f] rounded-[12px]'>
         <div className='flex flex-col gap-[80px]'>
           <div className='flex items-center gap-[10px]'>
             <div className='bg-[#fff] w-[50px] h-[50px] rounded-[50%] overflow-hidden'>

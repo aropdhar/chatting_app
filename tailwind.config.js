@@ -9,6 +9,9 @@ export default {
       boxShadow: {
         'boxshadow': '0 0 20px rgba(0, 0, 0, 0.4)',
       },
+      borderWidth: {
+        '2' : '1px'
+      },
       colors: {
         'custom-blue': 'rgba(0, 0, 0, 0.748)',
         'bg-color': 'rgba(0, 0, 0, 0.850)',
