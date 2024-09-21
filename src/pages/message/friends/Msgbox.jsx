@@ -138,7 +138,9 @@ const Msgbox = () => {
                            
               ))
 
+
             }
+
 
             </ScrollToBottom>
 
@@ -161,6 +163,7 @@ const Msgbox = () => {
                }
                
             </div>
+            <EmojiPicker className='absolute bg-[#000] z-[1100] top-[-460px] left-[20px]' onEmojiClick={handleemoji} open={emojishow}/>
       </div>
       
     }

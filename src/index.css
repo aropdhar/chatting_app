@@ -37,7 +37,7 @@
     }
     
     .notification_main{
-      @apply w-[420px] h-[84vh] p-[20px] absolute right-[32px] top-[100px] rounded-[10px] bg-[#000]  ml-[10px] ;
+      @apply w-[420px] h-[84vh] p-[20px] z-[1200]	 absolute right-[32px] top-[100px] rounded-[10px] bg-[#000]  ml-[10px] ;
     }
     
     .sender_main{
